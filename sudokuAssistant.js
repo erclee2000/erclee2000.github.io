@@ -79,7 +79,6 @@ function loadPuzzle() {
             puzzleString = ".................................................................................";
             break;
     }
-    puzzleString = "........5.2...9....9..2...373..481.....36....58....4...1...358...42.......978...2";
     const clues = puzzleString.split('');
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
@@ -255,8 +254,8 @@ function createInputBox() {
     inputBox.maxLength = '1';
     inputBox.style.fontFamily = 'Helvetica, sans-serif';
     inputBox.style.fontSize = '16px';
-    inputBox.style.width = '28px';
-    inputBox.style.height = '28px';
+    inputBox.style.width = '26px';
+    inputBox.style.height = '26px';
     inputBox.style.textAlign = 'center';
     inputBox.style.border = '0px';
     inputBox.style.borderRadius = '0px';
