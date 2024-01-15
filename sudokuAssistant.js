@@ -26,7 +26,7 @@ function revealOne() {
 function revealAll() {
     if (findSolution()) {
         copyInternalBoardToHTMLBoard();
-        writeInstruction('navy', 'solver checked ' + numPermutations.toLocaleString() + ' permutations to complete the puzzle');
+        writeInstruction('navy', 'assistant tried ' + numPermutations.toLocaleString() + ' permutations to solve the puzzle');
     }
 }
 
