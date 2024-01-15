@@ -316,9 +316,9 @@ function createInputBox() {
     inputBox.inputMode = 'none';
     inputBox.maxLength = '1';
     inputBox.style.fontFamily = 'Helvetica, sans-serif';
-    inputBox.style.fontSize = '18px';
-    inputBox.style.width = '30px';
-    inputBox.style.height = '30px';
+    inputBox.style.fontSize = '24px';
+    inputBox.style.width = '40px';
+    inputBox.style.height = '40px';
     inputBox.style.textAlign = 'center';
     inputBox.style.border = '0px';
     inputBox.style.borderRadius = '0px';
