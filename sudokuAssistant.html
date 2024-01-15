@@ -10,7 +10,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* height: 100vh; */
     }
 
     p {
@@ -26,7 +25,8 @@
       font-size: 14px;
       font-family: Helvetica, sans-serif;
       border-radius: 20px;
-      padding: 8px 16px;
+      width: 120px;
+      height: 40px;
       box-shadow: none;
       background-color: white;
       border-color: gray;
@@ -37,12 +37,13 @@
       font-size: 16px;
       font-family: Helvetica, sans-serif;
       border-radius: 5px;
-      padding: 10px 20px;
+      height: 54px;
+      width: 54px;
       box-shadow: none;
       background-color: white;
       border-color: gray;
       border-width: 1px;
-      touch-action: manipulation; 
+      touch-action: manipulation;
     }
   </style>
   <title>Sudoku Assistant</title>
@@ -50,12 +51,14 @@
 
 <body>
   <form id="form1">
-    <p align="center"><b>SUDOKU ASSISTANT</b></p>
+    <p align="center" style="font-size: 18px; margin-bottom: 2px;"><b>SUDOKU ASSISTANT</b></p>
     <p id="instruction1" align="center"></p>
+
     <table id="board1" align="center">
     </table>
+
     <table id="buttons1" align="center" width="360">
-      <tr height="12px"></tr>
+      <tr height="6px"></tr>
       <tr align="center">
         <td>
           <button type="button" class="revealButton" style="color: black" onclick="revealOne()">REVEAL ONE</button>
@@ -65,7 +68,8 @@
         </td>
       </tr>
     </table>
-    <table id="buttons2" align="center" width="330">
+
+    <table id="buttons2" align="center" width="360">
       <tr height="6px"></tr>
       <tr align="center">
         <td>
@@ -84,7 +88,8 @@
           <button type="button" class="digitButton" style="color: black" onclick="typeNumber(5)">5</button>
         </td>
         <td>
-          <button type="button" class="digitButton" style="color: black; padding: 10px 16px" onclick="typeNumber(11)">&#8592;</button>
+          <button type="button" class="digitButton" style="color: black; width: 54px; height: 54px;"
+            onclick="typeNumber(11)">&#8592;</button>
         </td>
       </tr>
       <tr align="center">
@@ -101,17 +106,26 @@
           <button type="button" class="digitButton" style="color: black" onclick="typeNumber(9)">9</button>
         </td>
         <td>
-          <button type="button" class="digitButton" style="color: black; padding: 10px 18px" onclick="typeNumber(10)">&#10005;</button>
+          <button type="button" class="digitButton" style="color: black; width: 54px; height: 54px;"
+            onclick="typeNumber(10)">&lt;</button>
         </td>
         <td>
-          <button type="button" class="digitButton" style="color: black; padding: 10px 16px" onclick="typeNumber(12)">&#8594;</button>
+          <button type="button" class="digitButton" style="color: black; width: 54px; height: 54px;"
+            onclick="typeNumber(12)">&#8594;</button>
         </td>
       </tr>
     </table>
-    <p></p>
-    <p align="center" style="font-size: 11px;"><a href="javascript:loadPuzzle()"
-        title="loads one of ten puzzles (this is designed to be an aid for solving puzzles found elsewhere), e.g., NY Times">[
-        sample puzzle ]</a>&emsp;<a href="javascript:reset()" title="erases the board">[ erase board ]</a></p>
+
+    <table id="buttons3" align="center" width="360">
+      <tr align="center">
+        <td align="center">
+          <p style="font-size: 11px;"><a href="javascript:loadPuzzle()">[ load a puzzle ]</a></p>
+        </td>
+        <td align="center">
+          <p style="font-size: 11px;"><a href="javascript:reset()">[ erase board ]</a></p>
+        </td>
+      </tr>
+    </table>
   </form>
   <script src="sudokuAssistant.js"></script>
 </body>
