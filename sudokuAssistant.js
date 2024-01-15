@@ -70,11 +70,21 @@ function typeNumber(value) {
             break;
         case 10:
             writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '', 'black');
-            if((lastBoxSelected - 1) < 0){
-                lastBoxSelected = 80;    
-            }else{
+            if ((lastBoxSelected - 1) < 0) {
+                lastBoxSelected = 80;
+            } else {
                 lastBoxSelected = (lastBoxSelected - 1);
             }
+            break;
+        case 11:
+            if ((lastBoxSelected - 1) < 0) {
+                lastBoxSelected = 80;
+            } else {
+                lastBoxSelected = (lastBoxSelected - 1);
+            }
+            break;
+        case 12:
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
             break;
     }
     HTMLBoard[lastBoxSelected].focus();
@@ -307,11 +317,12 @@ function createInputBox() {
     inputBox.maxLength = '1';
     inputBox.style.fontFamily = 'Helvetica, sans-serif';
     inputBox.style.fontSize = '18px';
-    inputBox.style.width = '25px';
-    inputBox.style.height = '25px';
+    inputBox.style.width = '30px';
+    inputBox.style.height = '30px';
     inputBox.style.textAlign = 'center';
     inputBox.style.border = '0px';
     inputBox.style.borderRadius = '0px';
+    inputBox.style.padding = '0px';
     writeToSingleHTMLInputBox(inputBox, ''); // initial value is empty
     return inputBox;
 }
@@ -364,12 +375,6 @@ function defineHTMLBoardNavigation() {
         inputBox.addEventListener('click', () => {
             lastBoxSelected = index;
         });
-
-        /* stores the last box the user touched (for phones) */
-        // inputBox.addEventListener('touchend', () => {
-        //     lastBoxSelected = index;
-        //     HTMLBoard[lastBoxSelected].focus();
-        // });
 
     });//for each input box
 
