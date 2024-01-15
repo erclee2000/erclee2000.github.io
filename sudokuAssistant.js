@@ -30,6 +30,56 @@ function revealAll() {
     }
 }
 
+function typeNumber(value) {
+    switch (value) {
+        case 1:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '1', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 2:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '2', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 3:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '3', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 4:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '4', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 5:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '5', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 6:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '6', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 7:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '7', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 8:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '8', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 9:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '9', 'black');
+            lastBoxSelected = (lastBoxSelected + 1) % 81;
+            break;
+        case 10:
+            writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '', 'black');
+            if((lastBoxSelected - 1) < 0){
+                lastBoxSelected = 80;    
+            }else{
+                lastBoxSelected = (lastBoxSelected - 1);
+            }
+            break;
+    }
+    HTMLBoard[lastBoxSelected].focus();
+}
+
 function reset() {
     for (let r = 0; r < 9; r++) {
         internalBoard[r].fill(0);
@@ -110,8 +160,8 @@ function findSolution() {
             if (!haveSolution()) {
                 writeInstruction('crimson', 'starting with the numbers entered below, no solution exists');
                 return false;
-            }        
-        }else{
+            }
+        } else {
             return false;
         }
     }
@@ -253,13 +303,12 @@ function createTableCell(r, c) {
 function createInputBox() {
     const inputBox = document.createElement('input');
     inputBox.type = 'text';
-    inputBox.pattern = '[1-9]{1}';
-    inputBox.inputMode = 'numeric';
+    inputBox.inputMode = 'none';
     inputBox.maxLength = '1';
     inputBox.style.fontFamily = 'Helvetica, sans-serif';
     inputBox.style.fontSize = '18px';
-    inputBox.style.width = '26px';
-    inputBox.style.height = '26px';
+    inputBox.style.width = '25px';
+    inputBox.style.height = '25px';
     inputBox.style.textAlign = 'center';
     inputBox.style.border = '0px';
     inputBox.style.borderRadius = '0px';
@@ -268,16 +317,11 @@ function createInputBox() {
 }
 
 function defineHTMLBoardNavigation() {
-    /* automatically move to next box once user enters a number */
-    HTMLBoard.forEach((inputBox, index) => {
-        inputBox.addEventListener('input', () => {
-            HTMLBoard[(index + 1) % 81].focus();
-        });
-    });
 
-    /* allows user to navigate board with arrow keys, stores last box navigated to */
-    HTMLBoard.forEach((box, index) => {
-        box.addEventListener('keydown', (event) => {
+    HTMLBoard.forEach((inputBox, index) => {
+
+        /* allow navigation with arrow keys */
+        inputBox.addEventListener('keydown', (event) => {
             let nextIndex = -1;
             const keyCode = event.keyCode;
             if (keyCode === 38) { //up w/ wrap around
@@ -309,14 +353,26 @@ function defineHTMLBoardNavigation() {
                 HTMLBoard[nextIndex].focus();
             lastBoxSelected = nextIndex;
         });
-    });
 
-    /* stores the last box the user clicked on */
-    HTMLBoard.forEach((box, index) => {
-        box.addEventListener('click', () => {
+        /* move to next box after user input */
+        inputBox.addEventListener('input', () => {
+            lastBoxSelected = (index + 1) % 81;
+            HTMLBoard[lastBoxSelected].focus();
+        });
+
+        /* stores the last box the user clicked on */
+        inputBox.addEventListener('click', () => {
             lastBoxSelected = index;
         });
-    });
+
+        /* stores the last box the user touched (for phones) */
+        // inputBox.addEventListener('touchend', () => {
+        //     lastBoxSelected = index;
+        //     HTMLBoard[lastBoxSelected].focus();
+        // });
+
+    });//for each input box
+
 }
 
 function copyHTMLBoardToInternalBoard() {

@@ -22,10 +22,21 @@
       text-decoration: none;
     }
 
-    button {
+    .revealButton {
       font-size: 12px;
       font-family: Helvetica, sans-serif;
       border-radius: 20px;
+      padding: 8px 16px;
+      box-shadow: none;
+      background-color: white;
+      border-color: gray;
+      border-width: 1px;
+    }
+
+    .digitButton {
+      font-size: 12px;
+      font-family: Helvetica, sans-serif;
+      border-radius: 5px;
       padding: 8px 16px;
       box-shadow: none;
       background-color: white;
@@ -42,19 +53,58 @@
     <p id="instruction1" align="center"></p>
     <table id="board1" align="center">
     </table>
-    <table id="buttons1" align="center" width="360">
+    <table id="buttons1" align="center" width="330">
       <tr height="12px"></tr>
-      <tr id="buttons1row1" align="center">
+      <tr align="center">
         <td>
-          <button type="button" style="color: black" onclick="revealOne()">REVEAL ONE</button>
+          <button type="button" class="revealButton" style="color: black" onclick="revealOne()">REVEAL ONE</button>
         </td>
         <td>
-          <button type="button" style="color: black" onclick="revealAll()">REVEAL ALL</button>
+          <button type="button" class="revealButton" style="color: black" onclick="revealAll()">REVEAL ALL</button>
+        </td>
+      </tr>
+    </table>
+    <table id="buttons2" align="center" width="250">
+      <tr height="6px"></tr>
+      <tr align="center">
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(1)">1</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(2)">2</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(3)">3</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(4)">4</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(5)">5</button>
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(6)">6</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(7)">7</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(8)">8</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(9)">9</button>
+        </td>
+        <td>
+          <button type="button" class="digitButton" style="color: black" onclick="typeNumber(10)">&lt;</button>
         </td>
       </tr>
     </table>
     <p></p>
-    <p align="center" style="font-size: 11px;"><a href="javascript:loadPuzzle()" title="loads one of ten puzzles (this is designed to be an aid for solving puzzles found elsewhere), e.g., NY Times">[ sample puzzle ]</a>&emsp;<a href="javascript:reset()" title="erases the board">[ erase board ]</a></p>
+    <p align="center" style="font-size: 11px;"><a href="javascript:loadPuzzle()"
+        title="loads one of ten puzzles (this is designed to be an aid for solving puzzles found elsewhere), e.g., NY Times">[
+        sample puzzle ]</a>&emsp;<a href="javascript:reset()" title="erases the board">[ erase board ]</a></p>
   </form>
   <script src="sudokuAssistant.js"></script>
 </body>
