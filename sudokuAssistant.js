@@ -90,7 +90,8 @@ function loadPuzzle() {
         }
     }
     copyInternalBoardToHTMLBoard();
-    writeInstruction('navy', 'randomly selected one of ten puzzles');
+    findSolution(); //solve the loaded puzzle
+    writeInstruction('navy', 'randomly selected a puzzle');
 }
 
 /****************************** SOLVING FUNCTIONS ******************************/
@@ -220,9 +221,12 @@ function initializeHTMLBoard() {
 function createHTMLBoard() {
     const board1 = document.getElementById('board1'); //board1 is an html table
     board1.style.borderCollapse = 'collapse';
+    board1.style.border = '2px solid gray';
 
+    /* create 9x9 grid */
     for (let r = 0; r < 9; r++) {
         let tableRow = document.createElement('tr');
+        tableRow.style.border = '0px';
         for (let c = 0; c < 9; c++) {
             let tableCell = createTableCell(r, c);
             tableCell.appendChild(createInputBox());//each cell has one inputbox
@@ -253,7 +257,7 @@ function createInputBox() {
     inputBox.inputMode = 'numeric';
     inputBox.maxLength = '1';
     inputBox.style.fontFamily = 'Helvetica, sans-serif';
-    inputBox.style.fontSize = '16px';
+    inputBox.style.fontSize = '18px';
     inputBox.style.width = '26px';
     inputBox.style.height = '26px';
     inputBox.style.textAlign = 'center';
