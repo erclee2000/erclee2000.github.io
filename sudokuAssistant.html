@@ -37,8 +37,8 @@
       font-size: 16px;
       font-family: Helvetica, sans-serif;
       border-radius: 5px;
-      height: 54px;
-      width: 54px;
+      height: 53px;
+      width: 53px;
       box-shadow: none;
       background-color: white;
       border-color: gray;
@@ -51,13 +51,13 @@
 
 <body>
   <form id="form1">
-    <p align="center" style="font-size: 18px; margin-bottom: 0px;"><b>SUDOKU ASSISTANT</b></p>
+    <p align="center" style="font-size: 18px; margin-top: 0px; margin-bottom: 0px;"><b>SUDOKU ASSISTANT</b></p>
     <p id="instruction1" align="center"></p>
 
     <table id="board1" align="center">
     </table>
 
-    <table id="buttons1" align="center" width="360">
+    <table id="buttons1" align="center" width="360" style="border-collapse: collapse;">
       <tr height="5px"></tr>
       <tr align="center">
         <td>
@@ -69,7 +69,7 @@
       </tr>
     </table>
 
-    <table id="buttons2" align="center" width="360">
+    <table id="buttons2" align="center" width="360" style="border-collapse: collapse;">
       <tr height="5px"></tr>
       <tr align="center">
         <td>
@@ -88,7 +88,7 @@
           <button type="button" class="digitButton" style="color: black" onclick="typeNumber(5)">5</button>
         </td>
         <td>
-          <button type="button" class="digitButton" style="color: black; width: 54px; height: 54px;"
+          <button type="button" class="digitButton" style="color: black; width: 53px; height: 53px;"
             onclick="typeNumber(11)">&#8592;</button>
         </td>
       </tr>
@@ -106,17 +106,17 @@
           <button type="button" class="digitButton" style="color: black" onclick="typeNumber(9)">9</button>
         </td>
         <td>
-          <button type="button" class="digitButton" style="color: black; width: 54px; height: 54px;"
+          <button type="button" class="digitButton" style="color: black; width: 53px; height: 53px;"
             onclick="typeNumber(10)">&lt;</button>
         </td>
         <td>
-          <button type="button" class="digitButton" style="color: black; width: 54px; height: 54px;"
+          <button type="button" class="digitButton" style="color: black; width: 53px; height: 53px;"
             onclick="typeNumber(12)">&#8594;</button>
         </td>
       </tr>
     </table>
 
-    <table id="buttons3" align="center" width="360">
+    <table id="buttons3" align="center" width="360" style="border-collapse: collapse;">
       <tr align="center">
         <td align="center">
           <p style="font-size: 11px;"><a href="javascript:loadPuzzle()">[ load a puzzle ]</a></p>
