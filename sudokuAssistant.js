@@ -31,6 +31,9 @@ function revealAll() {
 }
 
 function typeNumber(value) {
+    if(lastBoxSelected === -1)
+        lastBoxSelected = 0;
+
     switch (value) {
         case 1:
             writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '1', 'black');
@@ -68,7 +71,7 @@ function typeNumber(value) {
             writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '9', 'black');
             lastBoxSelected = (lastBoxSelected + 1) % 81;
             break;
-        case 10:
+        case 10: //backspace
             writeToSingleHTMLInputBox(HTMLBoard[lastBoxSelected], '', 'black');
             if ((lastBoxSelected - 1) < 0) {
                 lastBoxSelected = 80;
@@ -76,14 +79,14 @@ function typeNumber(value) {
                 lastBoxSelected = (lastBoxSelected - 1);
             }
             break;
-        case 11:
+        case 11: //left arrow
             if ((lastBoxSelected - 1) < 0) {
                 lastBoxSelected = 80;
             } else {
                 lastBoxSelected = (lastBoxSelected - 1);
             }
             break;
-        case 12:
+        case 12: //right arrow
             lastBoxSelected = (lastBoxSelected + 1) % 81;
             break;
     }
@@ -115,8 +118,8 @@ function loadPuzzle() {
         }
     }
     copyInternalBoardToHTMLBoard();
-    findSolution(); //solve the loaded puzzle
     writeInstruction('navy', 'randomly selected a puzzle');
+    findSolution(); //solve the loaded puzzle
 }
 
 /****************************** SOLVING FUNCTIONS ******************************/
@@ -133,7 +136,7 @@ function findSolution() {
             let done = [false]; //using array to 'pass by reference'; don't want to make copy for each recursive call
             depthFirstSearch(0, 0, done);
             if (!haveSolution()) {
-                writeInstruction('crimson', 'starting with the numbers entered below, no solution exists');
+                writeInstruction('crimson', 'no solution after checking ' + numPermutations.toLocaleString() + ' permutations; please recheck your entries');
                 return false;
             }
         } else {
@@ -179,7 +182,7 @@ function validClues() {
     if (numClues < 17) {
         isValid = false;
         instruction.style.color = 'crimson'
-        instruction.textContent = 'a valid sudoku must have at least 17 clues';
+        instruction.textContent = 'the puzzle below is not valid because it has less than 17 clues';
         // https://www.technologyreview.com/2012/01/06/188520/mathematicians-solve-minimum-sudoku-problem/
     }
     return isValid;
@@ -197,6 +200,9 @@ function depthFirstSearch(r, c, done) {
     if (internalBoard[r][c] === 0) {//a blank value
         for (let guess = 1; guess < 10 && !done[0]; guess++) {
             numPermutations++;
+            if(numPermutations === 100000000){//effectively a time cap--only the most contrived clues will hit this cap
+                done[0] = true;
+            }
             if (isValidEntry(r, c, guess)) {
                 internalBoard[r][c] = guess;
                 depthFirstSearch(r, c + 1, done);
